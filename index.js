@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 //CORS
 const cors = require('cors')
-//RUTAS
+//RUTAS NUEVAS
 
 cors.use( cors() );
 
