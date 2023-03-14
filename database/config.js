@@ -10,7 +10,7 @@ const dbConnection = async() => {
         throw new Error('No se puedo conectar a la base de datos, revisar logs');
     }
 
-}
+};
 
 module.exports = {
     dbConnection

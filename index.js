@@ -1,23 +1,26 @@
 require('dotenv').config();
-const {dbConnection} = require('./database/config');
-//Inicializar express para el server
+
 const express = require('express');
-const app = express();
-//CORS
 const cors = require('cors')
-//RUTAS ENDPOINTS
 
-cors.use( cors() );
+const {dbConnection} = require('./database/config');
+//Inicializar express para el server - Crear servidor de express
+const app = express();
 
+//CORS
+app.use( cors() );
+
+
+//Lectura y parseo del body
+app.use( express.json() );
+
+
+//Base de datos
 dbConnection();
 
-app.get('/', (req,res)=>{
-    res.json({
-        "ok":true,
-        "msj":"Hola Mundo"
-    })
-});
-
+//RUTAS - ENDPOINTS
+app.use( '/api/usuarios' , require('./routes/usuarios') );
+app.use( '/api/login' , require('./routes/auth') );
 
 app.listen( process.env.PORT , () => {
     console.log('Servidor corriendo en el puerto ' + process.env.PORT);
