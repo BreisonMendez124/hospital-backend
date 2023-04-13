@@ -29,7 +29,12 @@ router.post( '/' ,
 
 //Actualizacion de medicos
 router.put( '/:id' ,
-        [], 
+        [
+            validarJWT,
+            check('nombre','el nombre del medico es requerido'),
+            check('hospital','El hospital id debe ser valido').isMongoId(),
+            validarCampos
+        ], 
         actualizarMedico );
 
 router.delete( '/:id' , borrarMedico)
